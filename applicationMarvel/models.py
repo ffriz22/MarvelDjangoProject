@@ -34,6 +34,21 @@ class EventList:
 """
 
 
+class Creator:
+    id = models.IntegerField() #The unique ID of the creator resource.,
+    firstName = models.TextField() #The first name of the creator.,
+    middleName = models.TextField() #The middle name of the creator.,
+    lastName = models.TextField() #The last name of the creator.,
+    suffix = models.TextField() #The suffix or honorific for the creator.,
+    fullName = models.TextField() #The full name of the creator (a space-separated concatenation of the above four fields).,
+    modified = models.DateField() #The date the resource was most recently modified.,
+    resourceURI = models.TextField() #The canonical URL identifier for this resource.,
+    thumbnail = models.ForeignKey(Image) #The representative image for this creator.,
+    stories = models.CommaSeparatedIntegerField() #A resource list containing the stories which feature work by this creator.,
+    comics = models.CommaSeparatedIntegerField() #A resource list containing the comics which feature work by this creator.,
+    events = models.CommaSeparatedIntegerField() #A resource list containing the events which feature work by this creator.
+#end of Creator model
+
 
 
 class Event:
@@ -72,6 +87,8 @@ class Comic:
 #end of comic module
 
 #falte creadors
+
+#falte histories
 
 class Character(models.Model):
     id = models.IntegerField() #The unique ID of the character resource.,
