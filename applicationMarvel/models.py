@@ -7,6 +7,7 @@ class Image:
     extension = models.TextField() #The file extension for the image.
 #end of Image model
 
+"""
 
 class ComicList:
     available = models.IntegerField() #The number of total available issues in this list. Will always be greater than or equal to the "returned" value.,
@@ -30,28 +31,40 @@ class EventList:
     collectionURI = models.TextField() #The path to the full list of events in this collection.,
     items = models.TextField() #The list of returned events in this collection.
 #end of EventList model
+"""
 
 
-class SeriesList:
-    available = models.IntegerField() #The number of total available series in this list. Will always be greater than or equal to the "returned" value.,
-    returned = models.IntegerField() #The number of series returned in this collection (up to 20).,
-    collectionURI = models.TextField() #The path to the full list of series in this collection.,
-    items = models.TextField() #The list of returned series in this collection.
-#end of SeriesList model
 
+class Comic:
+    id = models.IntegerField() #The unique ID of the comic resource.,
+    title = models.TextField() #The canonical title of the comic.,
+    description = models.TextField() #The preferred description of the comic.,
+    modified = models.DateField() #The date the resource was most recently modified.,
+    isbn = models.TextField() #The ISBN for the comic (generally only populated for collection formats).,,
+    pageCount = models.IntegerField() #The number of story pages in the comic.,
+    resourceURI = models.TextField() #The canonical URL identifier for this resource.,
+    price = models.FloatField() #prices for this comic
+    thumbnail = models.ForeignKey(Image) #The representative image for this comic.,
+    images = models.CommaSeparatedIntegerField() #A list of promotional images associated with this comic.,
+    creators = models.CommaSeparatedIntegerField() #A resource list containing the creators associated with this comic.,
+    characters = models.CommaSeparatedIntegerField() #A resource list containing the characters which appear in this comic.,
+    stories = models.CommaSeparatedIntegerField() #A resource list containing the stories which appear in this comic.,
+    events = models.CommaSeparatedIntegerField() #A resource list containing the events in which this comic appears.
+#end of comic module
 
-class Characters(models.Model):
+#falte creadors
+
+class Character(models.Model):
     id = models.IntegerField() #The unique ID of the character resource.,
     name = models.TextField() #The name of the character.,
     description = models.TextField() #A short bio or description of the character.,
     modified = models.DateField() #The date the resource was most recently modified.,
     resourceURI = models.TextField() #The canonical URL identifier for this resource.,
-    url = models.URLField #(sol usem una) A set of public web site URLs for the resource.,
-    thumbnail = Image() #The representative image for this character.,
-    comics = models.ForeignKey(ComicList) #A resource list containing comics which feature this character.,
-    stories = models.ForeignKey(StoryList) #A resource list of stories in which this character appears.,
-    events = models.ForeignKey(EventList) #A resource list of events in which this character appears.,
-    series = models.ForeignKey(SeriesList) #A resource list of series in which this character appears.
+    thumbnail = models.ForeignKey(Image) #The representative image for this character.,
+    comics = models.CommaSeparatedIntegerField() #A resource list containing comics which feature this character.,
+    stories= models.CommaSeparatedIntegerField() #A resource list of stories in which this character appears.,
+    events = models.CommaSeparatedIntegerField() #A resource list of events in which this character appears.,
+    creator = models.ForeignKey(Creator) #A resource list containing the creators associated with this comic.,
 #end of characters model
 
 #http://developer.marvel.com/docs#!/public/getCreatorCollection_get_0
