@@ -7,32 +7,6 @@ class Image:
     extension = models.TextField() #The file extension for the image.
 #end of Image model
 
-"""
-
-class ComicList:
-    available = models.IntegerField() #The number of total available issues in this list. Will always be greater than or equal to the "returned" value.,
-    returned = models.IntegerField() #The number of issues returned in this collection (up to 20).,
-    collectionURI = models.TextField() #The path to the full list of issues in this collection.,
-    items = models.TextField() #The list of returned issues in this collection.
-#end of ComicList model
-
-
-class StoryList:
-    available = models.IntegerField() #The number of total available stories in this list. Will always be greater than or equal to the "returned" value.,
-    returned = models.IntegerField() #The number of stories returned in this collection (up to 20).,
-    collectionURI = models.TextField() #The path to the full list of stories in this collection.,
-    items = models.TextField() #The list of returned stories in this collection.
-#end of StoryList model
-
-
-class EventList:
-    available = models.IntegerField() #The number of total available events in this list. Will always be greater than or equal to the "returned" value.,
-    returned = models.IntegerField() #The number of events returned in this collection (up to 20).,
-    collectionURI = models.TextField() #The path to the full list of events in this collection.,
-    items = models.TextField() #The list of returned events in this collection.
-#end of EventList model
-"""
-
 
 class Creator:
     id = models.IntegerField() #The unique ID of the creator resource.,
@@ -100,7 +74,6 @@ class Comic:
     events = models.CommaSeparatedIntegerField() #A resource list containing the events in which this comic appears.
 #end of comic module
 
-#falte creadors
 
 class Character(models.Model):
     id = models.IntegerField() #The unique ID of the character resource.,
