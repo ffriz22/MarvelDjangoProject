@@ -35,6 +35,25 @@ class EventList:
 
 
 
+
+class Event:
+    id = models.IntegerField() #The unique ID of the event resource.,
+    title = models.TextField() #The title of the event.,
+    description = models.TextField() #A description of the event.,
+    resourceURI = models.TextField() #The canonical URL identifier for this resource.,
+    modified = models.DateField() #The date the resource was most recently modified.,
+    start = models.DateField() #The date of publication of the first issue in this event.,
+    end = models.DateField() #The date of publication of the last issue in this event.,
+    thumbnail = models.ForeignKey(Image) #The representative image for this event.,
+    comics = models.CommaSeparatedIntegerField() #A resource list containing the comics in this event.,
+    stories = models.CommaSeparatedIntegerField() #A resource list containing the stories in this event.,
+    characters = models.CommaSeparatedIntegerField() #A resource list containing the characters which appear in this event.,
+    creators = models.CommaSeparatedIntegerField() #A resource list containing creators whose work appears in this event.,
+    next = models.ForeignKey(Event) #A summary representation of the event which follows this event.,
+    previous = models.ForeignKey(Event) #A summary representation of the event which preceded this event.
+#end of event module
+
+
 class Comic:
     id = models.IntegerField() #The unique ID of the comic resource.,
     title = models.TextField() #The canonical title of the comic.,
