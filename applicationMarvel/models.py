@@ -49,6 +49,7 @@ class Creator:
     events = models.CommaSeparatedIntegerField() #A resource list containing the events which feature work by this creator.
 #end of Creator model
 
+
 class Story:
     id = models.IntegerField() # The unique ID of the story resource.,
     title = models.TextField()# The story title.,
