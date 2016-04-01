@@ -4,7 +4,6 @@ from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 from datetime import date
 
-
 class Image (models.Model):
     id = models.IntegerField(primary_key=True)
     path = models.TextField(max_length=100) #The directory path of to the image.,
