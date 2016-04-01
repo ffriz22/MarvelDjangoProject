@@ -16,10 +16,10 @@ class Image (models.Model):
 
 class Creator(models.Model):
     id = models.IntegerField(primary_key=True) #The unique ID of the creator resource.,
-    firstName = models.TextField(max_length=100) #The first name of the creator.,
-    middleName = models.TextField(max_length=100) #The middle name of the creator.,
-    lastName = models.TextField(max_length=100) #The last name of the creator.,
-    suffix = models.TextField(max_length=100) #The suffix or honorific for the creator.,
+    firstName = models.TextField(max_length=100, null=True) #The first name of the creator.,
+    middleName = models.TextField(max_length=100, null=True) #The middle name of the creator.,
+    lastName = models.TextField(max_length=100, null=True) #The last name of the creator.,
+    suffix = models.TextField(max_length=100, null=True) #The suffix or honorific for the creator.,
     fullName = models.TextField(max_length=100) #The full name of the creator (a space-separated concatenation of the above four fields).,
     modified = models.DateField() #The date the resource was most recently modified.,
     resourceURI = models.TextField(max_length=100) #The canonical URL identifier for this resource.,
@@ -38,9 +38,9 @@ class Creator(models.Model):
 class Story(models.Model):
     id = models.IntegerField(primary_key=True) # The unique ID of the story resource.,
     title = models.TextField(max_length=100)# The story title.,
-    description = models.TextField(max_length=100)# A short description of the story.,
+    description = models.TextField(max_length=100, null=True)# A short description of the story.,
     resourceURI = models.TextField(max_length=100)# The canonical URL identifier for this resource. ,
-    type  = models.TextField(max_length=100)# The story type e.g. interior story, cover, text story.,
+    type  = models.TextField(max_length=100, null=True)# The story type e.g. interior story, cover, text story.,
     modified = models.DateField()# The date the resource was most recently modified.,
     thumbnail = models.ForeignKey(Image, null=True)# The representative image for this story.,
     comics = models.CommaSeparatedIntegerField(max_length=100)# A resource list containing comics in which this story takes place.,
@@ -59,7 +59,7 @@ class Story(models.Model):
 class Event(models.Model):
     id = models.IntegerField(primary_key=True) #The unique ID of the event resource.,
     title = models.TextField(max_length=100) #The title of the event.,
-    description = models.TextField(max_length=100) #A description of the event.,
+    description = models.TextField(max_length=100, null=True) #A description of the event.,
     resourceURI = models.TextField(max_length=100) #The canonical URL identifier for this resource.,
     modified = models.DateField() #The date the resource was most recently modified.,
     start = models.DateField() #The date of publication of the first issue in this event.,
@@ -83,7 +83,7 @@ class Event(models.Model):
 class Comic(models.Model):
     id = models.IntegerField(primary_key=True) #The unique ID of the comic resource.,
     title = models.TextField(max_length=100) #The canonical title of the comic.,
-    description = models.TextField(max_length=100) #The preferred description of the comic.,
+    description = models.TextField(max_length=100, null=True) #The preferred description of the comic.,
     modified = models.DateField() #The date the resource was most recently modified.,
     isbn = models.TextField(max_length=100) #The ISBN for the comic (generally only populated for collection formats).,,
     pageCount = models.IntegerField() #The number of story pages in the comic.,
@@ -107,7 +107,7 @@ class Comic(models.Model):
 class Character(models.Model):
     id = models.IntegerField(primary_key=True) #The unique ID of the character resource.,
     name = models.TextField(max_length=100) #The name of the character.,
-    description = models.TextField(max_length=100) #A short bio or description of the character.,
+    description = models.TextField(max_length=100, null=True) #A short bio or description of the character.,
     modified = models.DateField() #The date the resource was most recently modified.,
     resourceURI = models.TextField(max_length=100) #The canonical URL identifier for this resource.,
     thumbnail = models.ForeignKey(Image, null=True) #The representative image for this character.,
