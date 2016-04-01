@@ -1,5 +1,8 @@
 from __future__ import unicode_literals
 from django.db import models
+from django.contrib.auth.models import User
+from django.core.urlresolvers import reverse
+from datetime import date
 
 
 class Image:
@@ -21,6 +24,11 @@ class Creator:
     stories = models.CommaSeparatedIntegerField() #A resource list containing the stories which feature work by this creator.,
     comics = models.CommaSeparatedIntegerField() #A resource list containing the comics which feature work by this creator.,
     events = models.CommaSeparatedIntegerField() #A resource list containing the events which feature work by this creator.
+
+    def __unicode__(self):
+        return u"%s" % self.fullName
+    def get_absolute_url(self):
+        return reverse('applicationMarvel:creator_detail', kwargs={'pk': self.pk})
 #end of Creator model
 
 
@@ -36,6 +44,12 @@ class Story:
     events = models.CommaSeparatedIntegerField()# A resource list of the events in which this story appears.,
     characters = models.CommaSeparatedIntegerField()# A resource list of characters which appear in this story.,
     creators = models.CommaSeparatedIntegerField()# A resource list of creators who worked on this story.,
+
+    def __unicode__(self):
+        return u"%s" % self.fullName
+
+    def get_absolute_url(self):
+        return reverse('applicationMarvel:creator_detail', kwargs={'pk': self.pk})
 #End of Story Model
 
 
@@ -54,6 +68,12 @@ class Event:
     creators = models.CommaSeparatedIntegerField() #A resource list containing creators whose work appears in this event.,
     next = models.ForeignKey(Event) #A summary representation of the event which follows this event.,
     previous = models.ForeignKey(Event) #A summary representation of the event which preceded this event.
+
+    def __unicode__(self):
+        return u"%s" % self.title
+
+    def get_absolute_url(self):
+        return reverse('applicationMarvel:creator_detail', kwargs={'pk': self.pk})
 #end of event module
 
 
@@ -72,6 +92,12 @@ class Comic:
     characters = models.CommaSeparatedIntegerField() #A resource list containing the characters which appear in this comic.,
     stories = models.CommaSeparatedIntegerField() #A resource list containing the stories which appear in this comic.,
     events = models.CommaSeparatedIntegerField() #A resource list containing the events in which this comic appears.
+
+    def __unicode__(self):
+        return u"%s" % self.title
+
+    def get_absolute_url(self):
+        return reverse('applicationMarvel:creator_detail', kwargs={'pk': self.pk})
 #end of comic module
 
 
@@ -86,6 +112,12 @@ class Character(models.Model):
     stories= models.CommaSeparatedIntegerField() #A resource list of stories in which this character appears.,
     events = models.CommaSeparatedIntegerField() #A resource list of events in which this character appears.,
     creator = models.ForeignKey(Creator) #A resource list containing the creators associated with this comic.,
+
+    def __unicode__(self):
+        return u"%s" % self.name
+
+    def get_absolute_url(self):
+        return reverse('applicationMarvel:creator_detail', kwargs={'pk': self.pk})
 #end of characters model
 
 #http://developer.marvel.com/docs#!/public/getCreatorCollection_get_0
