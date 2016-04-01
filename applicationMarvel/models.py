@@ -8,6 +8,9 @@ class Image (models.Model):
     id = models.IntegerField(primary_key=True)
     path = models.TextField(max_length=100) #The directory path of to the image.,
     extension = models.TextField(max_length=100) #The file extension for the image.
+
+    def __unicode__(self):
+        return u"%s" % (self.path + "." + self.extension)
 #end of Image model
 
 
