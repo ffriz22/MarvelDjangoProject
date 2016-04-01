@@ -1,9 +1,9 @@
 from django.contrib import admin
-import models
+from models import Creator, Comic, Character, Event, Story
 
-admin.site.register(models.Character)
-admin.site.register(models.Comic)
-admin.site.register(models.Creator)
-admin.site.register(models.Event)
-admin.site.register(models.Story)
+admin.site.register(Character)
+admin.site.register(Comic)
+admin.site.register(Creator)
+admin.site.register(Event)
+admin.site.register(Story)
 # Register your models here.
