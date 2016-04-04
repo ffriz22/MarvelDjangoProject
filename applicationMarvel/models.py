@@ -33,7 +33,7 @@ class Story(models.Model):
     resourceURI = models.TextField(max_length=100)# The canonical URL identifier for this resource. ,
     type  = models.TextField(max_length=100, null=True)# The story type e.g. interior story, cover, text story.,
     modified = models.DateField()# The date the resource was most recently modified.,
-    thumbnail = m= models.ImageField(upload_to="applicationMarvel", blank=True, null=True) # The representative image for this story.,
+    thumbnail = models.ImageField(upload_to="applicationMarvel", blank=True, null=True) # The representative image for this story.,
     comics = models.CommaSeparatedIntegerField(max_length=100)# A resource list containing comics in which this story takes place.,
     events = models.CommaSeparatedIntegerField(max_length=100)# A resource list of the events in which this story appears.,
     characters = models.CommaSeparatedIntegerField(max_length=100)# A resource list of characters which appear in this story.,
