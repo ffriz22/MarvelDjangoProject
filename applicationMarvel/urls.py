@@ -12,7 +12,7 @@ rlpatterns = patterns('',
         name='home_page'),
 
     # List creators: /applicationMarvel/creator.json
-    url(r'^restaurants\.(?P<extension>(json|xml|html))$',
+    url(r'^creators\.(?P<extension>(json|xml|html))$',
         CreatorList.as_view(),
         name='creator_list'),
 
