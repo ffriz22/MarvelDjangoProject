@@ -34,7 +34,7 @@ class ConnegResponseMixin(TemplateResponseMixin):
 
 class CreatorList(ListView, ConnegResponseMixin):
     model = Creator
-    queryset = Creator.objects
+    queryset = Creator.objects.all()
     context_object_name = 'creator_list'
     template_name = 'applicationMarvel/creator_list.html'
 #end of CreatorList class

@@ -19,6 +19,6 @@ urlpatterns = patterns('',
 
     # Creator details, ex.: /applicationMarvel/creators/1.json
     url(r'^creators/(?P<pk>\d+)\.(?P<extension>(json|xml|html))$',
-        CreatorList.as_view(),
+        CreatorDetail.as_view(),
         name='creator_detail'),
 )

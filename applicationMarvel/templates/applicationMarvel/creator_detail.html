@@ -1,0 +1,12 @@
+{% extends "applicationMarvel/base.html" %}
+{% block content %}
+<h1>
+    {{ creator.fullName }}
+</h1>
+<h2>Details:</h2>
+<p>
+    <b>Sufix:</b> {{ creator.suffix }}<br/>
+    <b>Nom complet:</b> {{ creator.fullName }}
+</p>
+
+{% endblock %}

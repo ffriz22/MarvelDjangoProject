@@ -2,12 +2,11 @@
 {% block content %}
 <h1>
     Creators
-    <!--{% if user %}(<a href="{% url 'myrestaurants:restaurant_create' %}">add</a>){% endif %}-->
 </h1>
 <ul>
     {% for creator in creator_list %}
-        <li><a href="{% url 'creator:creator_detail' creator.id 'html' %}">
-            {{ restaurant.name }}</a></li>
+        <li><a href="{% url 'applicationMarvel:creator_detail' creator.id 'html' %}">
+            {{ creator.fullName }}</a></li>
     {% empty %}<li>Sorry, no creators registered yet.</li>
     {% endfor %}
 </ul>
