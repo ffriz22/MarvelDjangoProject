@@ -6,7 +6,8 @@
 <h2>Details:</h2>
 <p>
     <b>Description:</b> {{ comic.description }}<br/>
-    <b>ISBN:</b> {{ comic.isbn }}
+    <b>ISBN:</b> {{ comic.isbn }}<br/>
+    <b>Creator:</b> <a href="{% url 'applicationMarvel:creator_detail' comic.creator.id 'html' %}">{{ comic.creator }}</a>
 </p>
 
 {% endblock %}
