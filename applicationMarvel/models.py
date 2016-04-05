@@ -40,7 +40,6 @@ class Story(models.Model):
 
 
 class Comic(models.Model):
-    id = models.IntegerField(primary_key=True) #The unique ID of the comic resource.,
     title = models.TextField(max_length=100) #The canonical title of the comic.,
     description = models.TextField(max_length=100, null=True) #The preferred description of the comic.,
     modified = models.DateField() #The date the resource was most recently modified.,
@@ -62,7 +61,6 @@ class Comic(models.Model):
 
 
 class Character(models.Model):
-    id = models.IntegerField(primary_key=True) #The unique ID of the character resource.,
     name = models.TextField(max_length=100) #The name of the character.,
     description = models.TextField(max_length=100, null=True) #A short bio or description of the character.,
     modified = models.DateField() #The date the resource was most recently modified.,
@@ -81,7 +79,6 @@ class Character(models.Model):
 
 
 class Event(models.Model):
-    id = models.IntegerField(primary_key=True) #The unique ID of the event resource.,
     title = models.TextField(max_length=100) #The title of the event.,
     description = models.TextField(max_length=100, null=True) #A description of the event.,
     resourceURI = models.TextField(max_length=100) #The canonical URL identifier for this resource.,

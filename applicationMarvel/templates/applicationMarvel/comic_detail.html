@@ -1,0 +1,12 @@
+{% extends "applicationMarvel/base.html" %}
+{% block content %}
+<h1>
+    {{ comic.title }}
+</h1>
+<h2>Details:</h2>
+<p>
+    <b>Description:</b> {{ comic.description }}<br/>
+    <b>ISBN:</b> {{ comic.isbn }}
+</p>
+
+{% endblock %}

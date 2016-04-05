@@ -6,7 +6,7 @@ from django.shortcuts import get_object_or_404
 from django.views.generic import DetailView, ListView
 from django.views.generic.base import TemplateResponseMixin
 from django.views.generic.edit import CreateView
-from models import Creator
+from models import Creator, Comic
 
 
 class ConnegResponseMixin(TemplateResponseMixin):
@@ -37,7 +37,7 @@ class CreatorList(ListView, ConnegResponseMixin):
     queryset = Creator.objects.all()
     context_object_name = 'creator_list'
     template_name = 'applicationMarvel/creator_list.html'
-#end of CreatorList class
+#end of CreatorList view
 
 
 class CreatorDetail(DetailView, ConnegResponseMixin):
@@ -46,5 +46,14 @@ class CreatorDetail(DetailView, ConnegResponseMixin):
 
     def get_context_data(self, **kwargs):
         context = super(CreatorDetail, self).get_context_data(**kwargs)
+        return context
+#end of CreatorDetail view
+
+class ComicDetail(DetailView, ConnegResponseMixin):
+    model = Comic
+    template_name = 'applicationMarvel/comic_detail.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(ComicDetail, self).get_context_data(**kwargs)
         return context
 # Create your views here.

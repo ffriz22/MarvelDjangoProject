@@ -8,5 +8,14 @@
     <b>Sufix:</b> {{ creator.suffix }}<br/>
     <b>Nom complet:</b> {{ creator.fullName }}
 </p>
-
+<h2>
+    Comics
+</h2>
+<ul>
+    {% for comic in creator.comic_set.all %}
+        <li><a href="{% url 'applicationMarvel:comic_detail' comic.id 'html' %}">
+            {{ comic.title }}</a></li>
+    {% empty %}<li>Sorry, no comics for this creator yet.</li>
+    {% endfor %}
+</ul>
 {% endblock %}

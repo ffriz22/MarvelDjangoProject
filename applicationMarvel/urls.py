@@ -4,7 +4,7 @@ from django.core.urlresolvers import reverse_lazy
 from django.views.generic import RedirectView
 
 from models import Creator
-from views import CreatorDetail, CreatorList
+from views import CreatorDetail, CreatorList, ComicDetail
 
 urlpatterns = patterns('',
     # Home page
@@ -21,4 +21,9 @@ urlpatterns = patterns('',
     url(r'^creators/(?P<pk>\d+)\.(?P<extension>(json|xml|html))$',
         CreatorDetail.as_view(),
         name='creator_detail'),
+
+   # Comic details, ex.: /applicationMarvel/comic/1.json
+   url(r'^comics/(?P<pk>\d+)\.(?P<extension>(json|xml|html))$',
+       ComicDetail.as_view(),
+       name='comic_detail'),
 )
