@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from django.conf.urls import patterns, url
 from django.core.urlresolvers import reverse_lazy
 from django.views.generic import RedirectView
@@ -5,7 +6,7 @@ from django.views.generic import RedirectView
 from models import Creator
 from views import CreatorDetail, CreatorList
 
-rlpatterns = patterns('',
+urlpatterns = patterns('',
     # Home page
     url(r'^$',
         RedirectView.as_view(url=reverse_lazy('applicationMarvel:creator_list', kwargs={'extension': 'html'})),
