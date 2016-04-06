@@ -21,3 +21,12 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^applicationMarvel/', include('applicationMarvel.urls', namespace='applicationMarvel')),
 ]
+
+from django.conf import settings
+from django.conf.urls import patterns
+
+if settings.DEBUG:
+    urlpatterns += patterns('',
+        url(r'^media/(?P<path>.*)$', 'django.views.static.serve',
+            {'document_root': settings.MEDIA_ROOT, }),
+        )

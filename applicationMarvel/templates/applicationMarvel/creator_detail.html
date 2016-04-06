@@ -8,6 +8,9 @@
     <b>Sufix:</b> {{ creator.suffix }}<br/>
     <b>Nom complet:</b> {{ creator.fullName }}
 </p>
+    {% if creator.thumbnail %}
+    <p><img src="{{ creator.thumbnail.url }}" width="200" /></p>
+{% endif %}
 <h2>
     Comics
 </h2>
