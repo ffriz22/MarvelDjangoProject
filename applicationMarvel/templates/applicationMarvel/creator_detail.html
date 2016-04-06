@@ -1,24 +1,57 @@
 {% extends "applicationMarvel/base.html" %}
 {% block content %}
-<h1>
-    {{ creator.fullName }}
-</h1>
-<h2>Details:</h2>
-<p>
-    <b>Sufix:</b> {{ creator.suffix }}<br/>
-    <b>Nom complet:</b> {{ creator.fullName }}
-</p>
+    <h1>
+        Creator: {{ creator.fullName }}
+    </h1>
+    <h2>Details:</h2>
+    <p>
+        <b>Sufix:</b> {{ creator.suffix }}<br/>
+        <b>Nom complet:</b> {{ creator.fullName }}
+    </p>
     {% if creator.thumbnail %}
-    <p><img src="{{ creator.thumbnail.url }}" width="200" /></p>
-{% endif %}
-<h2>
-    Comics
-</h2>
-<ul>
-    {% for comic in creator.comic_set.all %}
-        <li><a href="{% url 'applicationMarvel:comic_detail' comic.id 'html' %}">
-            {{ comic.title }}</a></li>
-    {% empty %}<li>Sorry, no comics for this creator yet.</li>
-    {% endfor %}
-</ul>
+        <p><img src="{{ creator.thumbnail.url }}" width="200" /></p>
+    {% endif %}
+    <h2>
+        Comics
+    </h2>
+    <ul>
+        {% for comic in creator.comic_set.all %}
+            <li><a href="{% url 'applicationMarvel:comic_detail' comic.id 'html' %}">
+                {{ comic.title }}</a></li>
+        {% empty %}<li>Sorry, no comics for this creator yet.</li>
+        {% endfor %}
+    </ul>
+
+    <h2>
+        Stories
+    </h2>
+    <ul>
+        {% for story in creator.story_set.all %}
+            <li><a href="{% url 'applicationMarvel:story_detail' story.id 'html' %}">
+                {{ story.title }}</a></li>
+        {% empty %}<li>Sorry, no stories for this creator yet.</li>
+        {% endfor %}
+    </ul>
+
+    <h2>
+        Characters
+    </h2>
+    <ul>
+        {% for character in creator.character_set.all %}
+            <li><a href="{% url 'applicationMarvel:character_detail' character.id 'html' %}">
+                {{ character.name }}</a></li>
+        {% empty %}<li>Sorry, no characters for this creator yet.</li>
+        {% endfor %}
+    </ul>
+
+    <h2>
+        Events
+    </h2>
+    <ul>
+        {% for event in creator.event_set.all %}
+            <li><a href="{% url 'applicationMarvel:event_detail' event.id 'html' %}">
+                {{ event.tittle }}</a></li>
+        {% empty %}<li>Sorry, no events for this creator yet.</li>
+        {% endfor %}
+    </ul>
 {% endblock %}

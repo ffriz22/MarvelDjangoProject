@@ -1,0 +1,28 @@
+{% extends "applicationMarvel/base.html" %}
+{% block content %}
+    <h1>
+        Character: {{ character.title }}
+    </h1>
+    <h2>Details:</h2>
+    <p>
+        <b>Description:</b> {{ character.description }}<br/>
+        <b>Creator:</b> <a href="{% url 'applicationMarvel:creator_detail' character.creator.id 'html' %}">{{ character.creator }}</a> <br/>
+        <b>Story:</b> <a href="{% url 'applicationMarvel:story_detail' character.stories.id 'html' %}">{{ character.stories }}</a> <br/>
+        <b>Comic:</b> <a href="{% url 'applicationMarvel:comic_detail' character.comics.id 'html' %}">{{ character.comics }}</a>
+    </p>
+
+    {% if character.thumbnail %}
+        <p><img src="{{ character.thumbnail.url }}" width="200" /></p>
+    {% endif %}
+
+    <h2>
+        Events
+    </h2>
+    <ul>
+        {% for event in character.event_set.all %}
+            <li><a href="{% url 'applicationMarvel:event_detail' event.id 'html' %}">
+                {{ event.tittle }}</a></li>
+        {% empty %}<li>Sorry, no events for this character yet.</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
