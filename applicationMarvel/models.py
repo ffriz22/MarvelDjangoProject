@@ -19,7 +19,7 @@ class Creator(models.Model):
         return u"%s" % self.fullName
     def get_absolute_url(self):
         return reverse_lazy('applicationMarvel:creator_detail', kwargs={'pk': self.pk})
-#end of Creator model
+#end of Creator Model
 
 
 class Story(models.Model):
