@@ -1,7 +1,7 @@
 {% extends "applicationMarvel/base.html" %}
 {% block content %}
     <h1>
-        Character: {{ character.title }}
+        Character: {{ character.name }}
     </h1>
     <h2>Details:</h2>
     <p>
@@ -21,7 +21,7 @@
     <ul>
         {% for event in character.event_set.all %}
             <li><a href="{% url 'applicationMarvel:event_detail' event.id 'html' %}">
-                {{ event.tittle }}</a></li>
+                {{ event.title }}</a></li>
         {% empty %}<li>Sorry, no events for this character yet.</li>
         {% endfor %}
     </ul>

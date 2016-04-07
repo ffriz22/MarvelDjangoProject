@@ -32,7 +32,7 @@
     <ul>
         {% for event in comic.event_set.all %}
             <li><a href="{% url 'applicationMarvel:event_detail' event.id 'html' %}">
-                {{ event.tittle }}</a></li>
+                {{ event.title }}</a></li>
         {% empty %}<li>Sorry, no events for this comic yet.</li>
         {% endfor %}
     </ul>
