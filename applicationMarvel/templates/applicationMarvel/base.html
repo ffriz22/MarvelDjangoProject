@@ -5,7 +5,10 @@
     <link rel="stylesheet" href="{% static "style/base.css" %}" />
     <title>{% block title %}Marvel DB{% endblock %}</title>
 </head>
-<body>
+<body style="background-image: url('/media/applicationMarvel/MarvelBackgroud.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: right; ">
 <div id="header">
     {% block header %}
         {% if user.username %}<p>User {{ user.username }}</p>
