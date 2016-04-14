@@ -17,8 +17,8 @@ urlpatterns = patterns('',
         CreatorList.as_view(),
         name='creator_list'),
 
-    # Creator details, ex.: /applicationMarvel/creators/1.json
-    url(r'^creators/(?P<pk>\d+)\.(?P<extension>(json|xml|html))$',
+    # Creator details, ex.: /applicationMarvel/creator/1.json
+    url(r'^creator/(?P<pk>\d+)\.(?P<extension>(json|xml|html))$',
         CreatorDetail.as_view(),
         name='creator_detail'),
 
@@ -28,7 +28,7 @@ urlpatterns = patterns('',
         name='comic_list'),
 
     # Comic details, ex.: /applicationMarvel/comic/1.json
-    url(r'^comics/(?P<pk>\d+)\.(?P<extension>(json|xml|html))$',
+    url(r'^comic/(?P<pk>\d+)\.(?P<extension>(json|xml|html))$',
        ComicDetail.as_view(),
        name='comic_detail'),
 
@@ -53,7 +53,7 @@ urlpatterns = patterns('',
        name='event_detail'),
 
     # List characters /applicationMarvel/characters.json
-    url(r'characters^\.(?P<extension>(json|xml|html))$',
+    url(r'characters\.(?P<extension>(json|xml|html))$',
         CharacterList.as_view(),
        name='characters_list'),
 
