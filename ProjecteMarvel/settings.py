@@ -55,6 +55,8 @@ MIDDLEWARE_CLASSES = [
 ]
 
 ROOT_URLCONF = 'ProjecteMarvel.urls'
+LOGIN_REDIRECT_URL = "/applicationMarvel/"
+LOGOUT_REDIRECT_URL = "/applicationMarvel/"
 
 TEMPLATES = [
     {

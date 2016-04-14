@@ -10,7 +10,7 @@ urlpatterns = patterns('',
     # Home page
     url(r'^$',
         RedirectView.as_view(url=reverse_lazy('applicationMarvel:creator_list', kwargs={'extension': 'html'})),
-        name='home_page'),
+        name='home'),
 
     # List creators: /applicationMarvel/creator.json
     url(r'^creators\.(?P<extension>(json|xml|html))$',

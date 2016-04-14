@@ -20,6 +20,8 @@ from django.contrib import admin
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^applicationMarvel/', include('applicationMarvel.urls', namespace='applicationMarvel')),
+    url(r'^login/$', 'django.contrib.auth.views.login', {'template_name': 'applicationMarvel/login.html'}),
+    url(r'^logout/$', 'django.contrib.auth.views.logout', {'next_page': '/applicationMarvel/'})
 ]
 
 from django.conf import settings
