@@ -14,6 +14,7 @@ class Creator(models.Model):
     modified = models.DateField() #The date the resource was most recently modified.,
     resourceURI = models.TextField(max_length=100, blank=True, null=True) #The canonical URL identifier for this resource.,
     thumbnail = models.ImageField(upload_to="applicationMarvel", blank=True, null=True) #The representative image for this creator.,
+    user = models.ForeignKey(User, default=1)
 
     def __unicode__(self):
         return u"%s" % self.fullName
@@ -26,10 +27,11 @@ class Story(models.Model):
     title = models.TextField(max_length=100)# The story title.,
     description = models.TextField(max_length=100, null=True, blank=True)# A short description of the story.,
     resourceURI = models.TextField(max_length=100, null=True, blank=True)# The canonical URL identifier for this resource. ,
-    type  = models.TextField(max_length=100, null=True, blank=True)# The story type e.g. interior story, cover, text story.,
+    type = models.TextField(max_length=100, null=True, blank=True)# The story type e.g. interior story, cover, text story.,
     modified = models.DateField()# The date the resource was most recently modified.,
     thumbnail = models.ImageField(upload_to="applicationMarvel", blank=True, null=True) # The representative image for this story.,
     creator = models.ForeignKey(Creator)
+    user = models.ForeignKey(User, default=1)
 
     def __unicode__(self):
         return u"%s" % self.title
@@ -51,6 +53,7 @@ class Comic(models.Model):
     images = models.CommaSeparatedIntegerField(max_length=100, null=True, blank=True) #A list of promotional images associated with this comic.,
     creator = models.ForeignKey(Creator)
     stories = models.ForeignKey(Story)
+    user = models.ForeignKey(User, default=1)
 
     def __unicode__(self):
         return u"%s" % self.title
@@ -69,6 +72,7 @@ class Character(models.Model):
     comics = models.ForeignKey(Comic)
     stories = models.ForeignKey(Story)
     creator = models.ForeignKey(Creator) #A resource list containing the creators associated with this comic.,
+    user = models.ForeignKey(User, default=1)
 
     def __unicode__(self):
         return u"%s" % self.name
@@ -90,6 +94,7 @@ class Event(models.Model):
     stories = models.ForeignKey(Story)
     creator = models.ForeignKey(Creator)
     character = models.ForeignKey(Character)
+    user = models.ForeignKey(User, default=1)
 
     def __unicode__(self):
         return u"%s" % self.title

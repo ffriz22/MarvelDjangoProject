@@ -5,7 +5,7 @@
 </h1>
 <ul>
     {% for event in event_list %}
-        <li><a href="{% url 'applicationMarvel:event_detail' event.id 'html' %}">
+        <li><a href="{% url 'applicationMarvel:event_detail' event.id %}">
             {{ event.title }}</a></li>
     {% empty %}<li>Sorry, no events registered yet.</li>
     {% endfor %}

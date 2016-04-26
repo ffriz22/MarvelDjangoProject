@@ -7,8 +7,8 @@
     <p>
         <b>Description:</b> {{ comic.description }}<br/>
         <b>ISBN:</b> {{ comic.isbn }}<br/>
-        <b>Creator:</b> <a href="{% url 'applicationMarvel:creator_detail' comic.creator.id 'html' %}">{{ comic.creator }}</a> <br/>
-        <b>Story:</b> <a href="{% url 'applicationMarvel:story_detail' comic.stories.id 'html' %}">{{ comic.stories }}</a>
+        <b>Creator:</b> <a href="{% url 'applicationMarvel:creator_detail' comic.creator.id %}">{{ comic.creator }}</a> <br/>
+        <b>Story:</b> <a href="{% url 'applicationMarvel:story_detail' comic.stories.id  %}">{{ comic.stories }}</a>
     </p>
 
     {% if comic.thumbnail %}
@@ -20,7 +20,7 @@
     </h2>
     <ul>
         {% for character in comic.character_set.all %}
-            <li><a href="{% url 'applicationMarvel:character_detail' character.id 'html' %}">
+            <li><a href="{% url 'applicationMarvel:character_detail' character.id %}">
                 {{ character.name }}</a></li>
         {% empty %}<li>Sorry, no characters for this character yet.</li>
         {% endfor %}
@@ -31,7 +31,7 @@
     </h2>
     <ul>
         {% for event in comic.event_set.all %}
-            <li><a href="{% url 'applicationMarvel:event_detail' event.id 'html' %}">
+            <li><a href="{% url 'applicationMarvel:event_detail' event.id %}">
                 {{ event.title }}</a></li>
         {% empty %}<li>Sorry, no events for this comic yet.</li>
         {% endfor %}

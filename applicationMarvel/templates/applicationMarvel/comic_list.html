@@ -5,7 +5,7 @@
 </h1>
 <ul>
     {% for comic in comic_list %}
-        <li><a href="{% url 'applicationMarvel:comic_detail' comic.id 'html' %}">
+        <li><a href="{% url 'applicationMarvel:comic_detail' comic.id %}">
             {{ comic.title }}</a></li>
     {% empty %}<li>Sorry, no comics registered yet.</li>
     {% endfor %}

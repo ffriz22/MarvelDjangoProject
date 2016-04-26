@@ -6,10 +6,10 @@
     <h2>Details:</h2>
     <p>
         <b>Description:</b> {{ event.description }}<br/>
-        <b>Creator:</b> <a href="{% url 'applicationMarvel:creator_detail' event.creator.id 'html' %}">{{ event.creator }}</a> <br/>
-        <b>Story:</b> <a href="{% url 'applicationMarvel:story_detail' event.stories.id 'html' %}">{{ event.stories }}</a> <br/>
-        <b>Comic:</b> <a href="{% url 'applicationMarvel:comic_detail' event.comics.id 'html' %}">{{ event.comics }}</a> <br/>
-        <b>Character:</b> <a href="{% url 'applicationMarvel:character_detail' event.character.id 'html' %}">{{ event.character }}</a>
+        <b>Creator:</b> <a href="{% url 'applicationMarvel:creator_detail' event.creator.id %}">{{ event.creator }}</a> <br/>
+        <b>Story:</b> <a href="{% url 'applicationMarvel:story_detail' event.stories.id %}">{{ event.stories }}</a> <br/>
+        <b>Comic:</b> <a href="{% url 'applicationMarvel:comic_detail' event.comics.id %}">{{ event.comics }}</a> <br/>
+        <b>Character:</b> <a href="{% url 'applicationMarvel:character_detail' event.character.id %}">{{ event.character }}</a>
     </p>
 
     {% if event.thumbnail %}

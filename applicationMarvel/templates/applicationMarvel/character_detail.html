@@ -6,9 +6,9 @@
     <h2>Details:</h2>
     <p>
         <b>Description:</b> {{ character.description }}<br/>
-        <b>Creator:</b> <a href="{% url 'applicationMarvel:creator_detail' character.creator.id 'html' %}">{{ character.creator }}</a> <br/>
-        <b>Story:</b> <a href="{% url 'applicationMarvel:story_detail' character.stories.id 'html' %}">{{ character.stories }}</a> <br/>
-        <b>Comic:</b> <a href="{% url 'applicationMarvel:comic_detail' character.comics.id 'html' %}">{{ character.comics }}</a>
+        <b>Creator:</b> <a href="{% url 'applicationMarvel:creator_detail' character.creator.id %}">{{ character.creator }}</a> <br/>
+        <b>Story:</b> <a href="{% url 'applicationMarvel:story_detail' character.stories.id %}">{{ character.stories }}</a> <br/>
+        <b>Comic:</b> <a href="{% url 'applicationMarvel:comic_detail' character.comics.id %}">{{ character.comics }}</a>
     </p>
 
     {% if character.thumbnail %}
@@ -20,7 +20,7 @@
     </h2>
     <ul>
         {% for event in character.event_set.all %}
-            <li><a href="{% url 'applicationMarvel:event_detail' event.id 'html' %}">
+            <li><a href="{% url 'applicationMarvel:event_detail' event.id %}">
                 {{ event.title }}</a></li>
         {% empty %}<li>Sorry, no events for this character yet.</li>
         {% endfor %}
