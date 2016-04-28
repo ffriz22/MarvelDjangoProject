@@ -11,7 +11,7 @@ class Creator(models.Model):
     lastName = models.TextField(max_length=100, null=True, blank=True) #The last name of the creator.,
     suffix = models.TextField(max_length=100, null=True) #The suffix or honorific for the creator.,
     fullName = models.TextField(max_length=100) #The full name of the creator (a space-separated concatenation of the above four fields).,
-    modified = models.DateField() #The date the resource was most recently modified.,
+    modified = models.DateField(default=date.today()) #The date the resource was most recently modified.,
     resourceURI = models.TextField(max_length=100, blank=True, null=True) #The canonical URL identifier for this resource.,
     thumbnail = models.ImageField(upload_to="applicationMarvel", blank=True, null=True) #The representative image for this creator.,
     user = models.ForeignKey(User, default=1)
@@ -28,7 +28,7 @@ class Story(models.Model):
     description = models.TextField(max_length=100, null=True, blank=True)# A short description of the story.,
     resourceURI = models.TextField(max_length=100, null=True, blank=True)# The canonical URL identifier for this resource. ,
     type = models.TextField(max_length=100, null=True, blank=True)# The story type e.g. interior story, cover, text story.,
-    modified = models.DateField()# The date the resource was most recently modified.,
+    modified = models.DateField(default=date.today())# The date the resource was most recently modified.,
     thumbnail = models.ImageField(upload_to="applicationMarvel", blank=True, null=True) # The representative image for this story.,
     creator = models.ForeignKey(Creator)
     user = models.ForeignKey(User, default=1)
@@ -44,7 +44,7 @@ class Story(models.Model):
 class Comic(models.Model):
     title = models.TextField(max_length=100) #The canonical title of the comic.,
     description = models.TextField(max_length=100, null=True, blank=True) #The preferred description of the comic.,
-    modified = models.DateField() #The date the resource was most recently modified.,
+    modified = models.DateField(default=date.today()) #The date the resource was most recently modified.,
     isbn = models.TextField(max_length=100) #The ISBN for the comic (generally only populated for collection formats).,,
     pageCount = models.IntegerField() #The number of story pages in the comic.,
     resourceURI = models.TextField(max_length=100, null=True, blank=True) #The canonical URL identifier for this resource.,
@@ -66,7 +66,7 @@ class Comic(models.Model):
 class Character(models.Model):
     name = models.TextField(max_length=100) #The name of the character.,
     description = models.TextField(max_length=100, null=True, blank=True) #A short bio or description of the character.,
-    modified = models.DateField() #The date the resource was most recently modified.,
+    modified = models.DateField(default=date.today()) #The date the resource was most recently modified.,
     resourceURI = models.TextField(max_length=100, null=True, blank=True) #The canonical URL identifier for this resource.,
     thumbnail = models.ImageField(upload_to="applicationMarvel", blank=True, null=True) #The representative image for this character.,
     comics = models.ForeignKey(Comic)
