@@ -2,6 +2,9 @@
 {% block content %}
     <h1>
         Character: {{ character.name }}
+        {% if user == character.user %}
+            (<a href="{% url 'applicationMarvel:character_edit' character.id %}">editar</a>)
+        {% endif %}
     </h1>
     <h2>Details:</h2>
     <p>
