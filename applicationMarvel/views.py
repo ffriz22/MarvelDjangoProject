@@ -1,12 +1,10 @@
-from django.utils import timezone
 from django.core import serializers
-from django.core.urlresolvers import reverse
-from django.http import HttpResponseRedirect, HttpResponse
-from django.shortcuts import get_object_or_404
+from django.http import HttpResponse
 from django.views.generic import DetailView, ListView
 from django.views.generic.base import TemplateResponseMixin
 from django.views.generic.edit import CreateView
 from models import Creator, Comic, Story, Event, Character
+from forms import CreatorForm, CharacterForm, ComicForm, EventForm, StoryForm
 
 
 class ConnegResponseMixin(TemplateResponseMixin):
@@ -50,6 +48,16 @@ class CreatorDetail(DetailView, ConnegResponseMixin):
 #end of CreatorDetail view
 
 
+class CreatorCreate(CreateView):
+    model = Creator
+    template_name = 'applicationMarvel/formularis/form.html'
+    form_class = CreatorForm
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super(CreatorCreate, self).form_valid(form)
+
+
 class ComicList(ListView, ConnegResponseMixin):
     model = Comic
     queryset = Comic.objects.all()
@@ -66,6 +74,16 @@ class ComicDetail(DetailView, ConnegResponseMixin):
         context = super(ComicDetail, self).get_context_data(**kwargs)
         return context
 #end of ComicDetailview
+
+
+class ComicCreate(CreateView):
+    model = Comic
+    template_name = 'applicationMarvel/formularis/form.html'
+    form_class = ComicForm
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super(ComicCreate, self).form_valid(form)
 
 
 class StoryList(ListView, ConnegResponseMixin):
@@ -86,6 +104,16 @@ class StoryDetail(DetailView, ConnegResponseMixin):
 #end of StoryDetail view
 
 
+class StoryCreate(CreateView):
+    model = Story
+    template_name = 'applicationMarvel/formularis/form.html'
+    form_class = StoryForm
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super(StoryCreate, self).form_valid(form)
+
+
 class EventList(ListView, ConnegResponseMixin):
     model = Event
     queryset = Event.objects.all()
@@ -104,6 +132,16 @@ class EventDetail(DetailView, ConnegResponseMixin):
 #end of EventDetail view
 
 
+class EventCreate(CreateView):
+    model = Event
+    template_name = 'applicationMarvel/formularis/form.html'
+    form_class = EventForm
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super(EventCreate, self).form_valid(form)
+
+
 class CharacterList(ListView, ConnegResponseMixin):
     model = Character
     queryset = Character.objects.all()
@@ -120,4 +158,14 @@ class CharacterDetail(DetailView, ConnegResponseMixin):
         context = super(CharacterDetail, self).get_context_data(**kwargs)
         return context
 #end of CharacterDetail view
+
+
+class CharacterCreate(CreateView):
+    model = Character
+    template_name = 'applicationMarvel/formularis/form.html'
+    form_class = CharacterForm
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super(CharacterCreate, self).form_valid(form)
 # Create your views here.

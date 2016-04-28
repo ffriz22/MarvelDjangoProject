@@ -2,6 +2,7 @@
 {% block content %}
 <h1>
     Stories
+    {% if user %}(<a href="{% url 'applicationMarvel:story_create' %}">afegir</a>){% endif %}
 </h1>
 <ul>
     {% for story in story_list %}
