@@ -1,6 +1,7 @@
 from django.core import serializers
+from django.core.urlresolvers import reverse_lazy
 from django.http import HttpResponse
-from django.views.generic import DetailView, ListView
+from django.views.generic import DetailView, ListView, DeleteView
 from django.views.generic.base import TemplateResponseMixin
 from django.views.generic.edit import CreateView
 from models import Creator, Comic, Story, Event, Character
@@ -58,10 +59,9 @@ class CreatorCreate(CreateView):
         return super(CreatorCreate, self).form_valid(form)
 
 
-def delete_creator(request, pk):
-    query = Creator.objects.get(id=pk)
-    query.delete()
-    return HttpResponse("Deleted!")
+class CreatorDelete(DeleteView):
+    model = Creator
+    success_url = reverse_lazy('applicationMarvel:creator_list')
 
 
 class ComicList(ListView, ConnegResponseMixin):
@@ -92,6 +92,11 @@ class ComicCreate(CreateView):
         return super(ComicCreate, self).form_valid(form)
 
 
+class ComicDelete(DeleteView):
+    model = Comic
+    success_url = reverse_lazy('applicationMarvel:comic_list')
+
+
 class StoryList(ListView, ConnegResponseMixin):
     model = Story
     queryset = Story.objects.all()
@@ -118,6 +123,11 @@ class StoryCreate(CreateView):
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super(StoryCreate, self).form_valid(form)
+
+
+class StoryDelete(DeleteView):
+    model = Story
+    success_url = reverse_lazy('applicationMarvel:stories_list')
 
 
 class EventList(ListView, ConnegResponseMixin):
@@ -148,6 +158,11 @@ class EventCreate(CreateView):
         return super(EventCreate, self).form_valid(form)
 
 
+class EventDelete(DeleteView):
+    model = Event
+    success_url = reverse_lazy('applicationMarvel:events_list')
+
+
 class CharacterList(ListView, ConnegResponseMixin):
     model = Character
     queryset = Character.objects.all()
@@ -174,4 +189,9 @@ class CharacterCreate(CreateView):
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super(CharacterCreate, self).form_valid(form)
+
+
+class CharacterDelete(DeleteView):
+    model = Character
+    success_url = reverse_lazy('applicationMarvel:characters_list')
 # Create your views here.

@@ -4,6 +4,8 @@
         Comic: {{ comic.title }}
         {% if user == comic.user %}
             (<a href="{% url 'applicationMarvel:comic_edit' comic.id %}">editar</a>)
+            <form method="POST" action="{% url "applicationMarvel:comic_delete" comic.id %}">
+   {% csrf_token %}<input type="submit" value="Borrar">
         {% endif %}
     </h1>
     <h2>Details:</h2>

@@ -50,7 +50,6 @@ class Comic(models.Model):
     resourceURI = models.TextField(max_length=100, null=True, blank=True) #The canonical URL identifier for this resource.,
     price = models.FloatField() #prices for this comic
     thumbnail = models.ImageField(upload_to="applicationMarvel", blank=True, null=True) #The representative image for this comic.,
-    images = models.CommaSeparatedIntegerField(max_length=100, null=True, blank=True) #A list of promotional images associated with this comic.,
     creator = models.ForeignKey(Creator)
     stories = models.ForeignKey(Story)
     user = models.ForeignKey(User, default=1)
