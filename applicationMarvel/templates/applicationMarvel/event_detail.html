@@ -19,3 +19,6 @@
         <p><img src="{{ event.thumbnail.url }}" width="200" /></p>
     {% endif %}
 {% endblock %}
+{% block footer %}
+    Created by {{ character.user }}
+{% endblock %}
