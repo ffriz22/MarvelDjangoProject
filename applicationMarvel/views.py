@@ -58,6 +58,12 @@ class CreatorCreate(CreateView):
         return super(CreatorCreate, self).form_valid(form)
 
 
+def delete_creator(request, pk):
+    query = Creator.objects.get(id=pk)
+    query.delete()
+    return HttpResponse("Deleted!")
+
+
 class ComicList(ListView, ConnegResponseMixin):
     model = Comic
     queryset = Comic.objects.all()

@@ -6,7 +6,8 @@ from django.views.generic import RedirectView, UpdateView
 from forms import CreatorForm, CharacterForm, ComicForm, EventForm, StoryForm
 from models import Creator, Character, Comic, Event, Story
 from views import CreatorDetail, CreatorList, ComicDetail, ComicList, StoryDetail, StoryList, EventDetail, EventList, \
-    CharacterDetail, CharacterList, CharacterCreate, ComicCreate, CreatorCreate, EventCreate, StoryCreate
+    CharacterDetail, CharacterList, CharacterCreate, ComicCreate, CreatorCreate, EventCreate, StoryCreate, \
+    delete_creator
 
 urlpatterns = patterns('',
                        # Home page
@@ -36,6 +37,9 @@ urlpatterns = patterns('',
                        url(r'^creators/create/$',
                            CreatorCreate.as_view(),
                            name='creator_create'),
+
+                       # Delete creator details, ex.: applicationMarvel/creator/1/delete/
+                       url(r'^creator/(?P<pk>\d+)/delete/$', delete_creator, name='creator_delete'),
 
                        # List comics: /applicationMarvel/comics.json
                        url(r'^comics(\.(?P<extension>(json|xml)))?$',

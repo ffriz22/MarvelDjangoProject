@@ -4,6 +4,7 @@
         Creator: {{ creator.fullName }}
         {% if user == creator.user %}
             (<a href="{% url 'applicationMarvel:creator_edit' creator.id %}">editar</a>)
+            (<a href="{% url 'applicationMarvel:creator_delete' creator.id %}">borrar</a>)
         {% endif %}
     </h1>
     <h2>Details:</h2>
@@ -59,5 +60,5 @@
     </ul>
 {% endblock %}
 {% block footer %}
-    Created by {{ character.user }}
+    Created by {{ creator.user }}
 {% endblock %}
