@@ -134,7 +134,7 @@ class EventDetail(DetailView, ConnegResponseMixin):
 
 class EventCreate(CreateView):
     model = Event
-    template_name = 'applicationMarvel/formularis/form.html'
+    template_name = 'applicationMarvel/formularis/form_events_create.html'
     form_class = EventForm
 
     def form_valid(self, form):

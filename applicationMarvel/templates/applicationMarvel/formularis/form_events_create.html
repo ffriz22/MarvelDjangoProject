@@ -1,0 +1,18 @@
+{% extends "applicationMarvel/base.html" %}
+{% block content %}
+    <script>
+    $(function() {
+        var events = [ "X-Tinction Agenda", "Acts of Vengeance!", "Star Wars Event","DeadPool Event", "Spider-Man", "X-Men Club", "Civil War Event", "Marvel Event Comic", "New academy Event"]
+          $("#id_title").autocomplete({
+              source: events
+            });
+        });
+    </script>
+    <form method="post" enctype="multipart/form-data" action="">
+        {% csrf_token %}
+        <table>
+            {{ form.as_table }}
+        </table>
+        <input type="submit" value="Submit"/>
+    </form>
+{% endblock %}
