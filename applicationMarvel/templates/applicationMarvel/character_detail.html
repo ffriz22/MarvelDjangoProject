@@ -4,6 +4,8 @@
         Character: {{ character.name }}
         {% if user == character.user %}
             (<a href="{% url 'applicationMarvel:character_edit' character.id %}">editar</a>)
+            <form method="POST" action="{% url "applicationMarvel:character_delete" character.id %}">
+   {% csrf_token %}<input type="submit" value="Borrar">
         {% endif %}
     </h1>
     <h2>Details:</h2>
@@ -28,4 +30,7 @@
         {% empty %}<li>Sorry, no events for this character yet.</li>
         {% endfor %}
     </ul>
+{% endblock %}
+{% block footer %}
+    Created by {{ character.user }}
 {% endblock %}

@@ -4,6 +4,8 @@
         Story: {{ story.title }}
         {% if user == story.user %}
             (<a href="{% url 'applicationMarvel:story_edit' story.id %}">editar</a>)
+            <form method="POST" action="{% url "applicationMarvel:story_delete" story.id %}">
+   {% csrf_token %}<input type="submit" value="Borrar">
         {% endif %}
     </h1>
     <h2>Details:</h2>
@@ -49,4 +51,7 @@
         {% empty %}<li>Sorry, no events for this event yet.</li>
         {% endfor %}
     </ul>
+{% endblock %}
+{% block footer %}
+    Created by {{ story.user }}
 {% endblock %}

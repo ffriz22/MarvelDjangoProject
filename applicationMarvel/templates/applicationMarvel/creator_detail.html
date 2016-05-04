@@ -4,6 +4,9 @@
         Creator: {{ creator.fullName }}
         {% if user == creator.user %}
             (<a href="{% url 'applicationMarvel:creator_edit' creator.id %}">editar</a>)
+            <form method="POST" action="{% url "applicationMarvel:creator_delete" creator.id %}">
+   {% csrf_token %}<input type="submit" value="Borrar">
+</form>
         {% endif %}
     </h1>
     <h2>Details:</h2>
@@ -57,4 +60,7 @@
         {% empty %}<li>Sorry, no events for this creator yet.</li>
         {% endfor %}
     </ul>
+{% endblock %}
+{% block footer %}
+    Created by {{ creator.user }}
 {% endblock %}

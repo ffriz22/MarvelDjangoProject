@@ -6,7 +6,8 @@ from django.views.generic import RedirectView, UpdateView
 from forms import CreatorForm, CharacterForm, ComicForm, EventForm, StoryForm
 from models import Creator, Character, Comic, Event, Story
 from views import CreatorDetail, CreatorList, ComicDetail, ComicList, StoryDetail, StoryList, EventDetail, EventList, \
-    CharacterDetail, CharacterList, CharacterCreate, ComicCreate, CreatorCreate, EventCreate, StoryCreate
+    CharacterDetail, CharacterList, CharacterCreate, ComicCreate, CreatorCreate, EventCreate, StoryCreate, \
+    CreatorDelete, ComicDelete, CharacterDelete, StoryDelete, EventDelete
 
 urlpatterns = patterns('',
                        # Home page
@@ -37,6 +38,11 @@ urlpatterns = patterns('',
                            CreatorCreate.as_view(),
                            name='creator_create'),
 
+                       # Delete creator details, ex.: applicationMarvel/creator/1/delete/
+                       url(r'^creator/(?P<pk>\d+)/delete/$',
+                           CreatorDelete.as_view(),
+                           name='creator_delete'),
+
                        # List comics: /applicationMarvel/comics.json
                        url(r'^comics(\.(?P<extension>(json|xml)))?$',
                            ComicList.as_view(),
@@ -59,6 +65,11 @@ urlpatterns = patterns('',
                        url(r'^comics/create/$',
                            ComicCreate.as_view(),
                            name='comic_create'),
+
+                       # Delete comic details, ex.: applicationMarvel/comic/1/delete/
+                       url(r'^comic/(?P<pk>\d+)/delete/$',
+                           ComicDelete.as_view(),
+                           name='comic_delete'),
 
                        # List stories /applicationMarvel/stories.json
                        url(r'^stories(\.(?P<extension>(json|xml)))?$',
@@ -83,6 +94,11 @@ urlpatterns = patterns('',
                            StoryCreate.as_view(),
                            name='story_create'),
 
+                       # Delete story details, ex.: applicationMarvel/story/1/delete/
+                       url(r'^story/(?P<pk>\d+)/delete/$',
+                           StoryDelete.as_view(),
+                           name='story_delete'),
+
                        # List events /applicationMarvel/events.json
                        url(r'^events(\.(?P<extension>(json|xml)))?$',
                            EventList.as_view(),
@@ -106,6 +122,11 @@ urlpatterns = patterns('',
                            EventCreate.as_view(),
                            name='event_create'),
 
+                       # Delete event details, ex.: applicationMarvel/event/1/delete/
+                       url(r'^event/(?P<pk>\d+)/delete/$',
+                           EventDelete.as_view(),
+                           name='event_delete'),
+
                        # List characters /applicationMarvel/characters.json
                        url(r'characters(\.(?P<extension>(json|xml)))?$',
                            CharacterList.as_view(),
@@ -124,8 +145,14 @@ urlpatterns = patterns('',
                                form_class=CharacterForm),
                            name='character_edit'),
 
+                       # Delete character details, ex.: applicationMarvel/event/1/delete/
+                       url(r'^character/(?P<pk>\d+)/delete/$',
+                           CharacterDelete.as_view(),
+                           name='character_delete'),
+
                        # Create a character /applicationMarvel/characters/create/
                        url(r'^characters/create/$',
                            CharacterCreate.as_view(),
                            name='character_create'),
                        )
+

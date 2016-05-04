@@ -4,6 +4,8 @@
         Event: {{ event.title }}
         {% if user == event.user %}
             (<a href="{% url 'applicationMarvel:event_edit' event.id %}">editar</a>)
+            <form method="POST" action="{% url "applicationMarvel:event_delete" event.id %}">
+   {% csrf_token %}<input type="submit" value="Borrar">
         {% endif %}
     </h1>
     <h2>Details:</h2>
@@ -18,4 +20,7 @@
     {% if event.thumbnail %}
         <p><img src="{{ event.thumbnail.url }}" width="200" /></p>
     {% endif %}
+{% endblock %}
+{% block footer %}
+    Created by {{ event.user }}
 {% endblock %}
