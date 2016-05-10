@@ -1,15 +1,36 @@
+from django.contrib.auth.decorators import login_required
 from django.core import serializers
 from django.core.urlresolvers import reverse_lazy
 from django.http import HttpResponse
+from django.utils.decorators import method_decorator
 from django.views.generic import DetailView, ListView, DeleteView
 from django.views.generic.base import TemplateResponseMixin
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView
+from rest_framework.exceptions import PermissionDenied
+
 from models import Creator, Comic, Story, Event, Character
 from forms import CreatorForm, CharacterForm, ComicForm, EventForm, StoryForm
 
 
-class ConnegResponseMixin(TemplateResponseMixin):
+class LoginRequiredMixin(object):
+    @method_decorator (login_required())
+    def dispatch(self, *args, **kwargs):
+        return super(LoginRequiredMixin, self).dispatch(*args, **kwargs)
 
+
+class CheckIsOwnerMixin(object):
+    def get_object(self, *args, **kwargs):
+        obj = super(CheckIsOwnerMixin, self).get_object(*args, **kwargs)
+        if not obj.user == self.request.user:
+            raise PermissionDenied
+        return obj
+
+
+class LoguinRequiredCheckIsOwnerUpdateView(LoginRequiredMixin, CheckIsOwnerMixin, UpdateView):
+    template_name = 'applicationMarvel/formularis/form.html'
+
+
+class ConnegResponseMixin(TemplateResponseMixin):
     def render_json_object_response(self, objects, **kwargs):
         json_data = serializers.serialize(u"json", objects, **kwargs)
         return HttpResponse(json_data, content_type=u"application/json")
@@ -49,7 +70,7 @@ class CreatorDetail(DetailView, ConnegResponseMixin):
 #end of CreatorDetail view
 
 
-class CreatorCreate(CreateView):
+class CreatorCreate(LoginRequiredMixin, CreateView):
     model = Creator
     template_name = 'applicationMarvel/formularis/form.html'
     form_class = CreatorForm
@@ -59,7 +80,7 @@ class CreatorCreate(CreateView):
         return super(CreatorCreate, self).form_valid(form)
 
 
-class CreatorDelete(DeleteView):
+class CreatorDelete(CheckIsOwnerMixin, LoginRequiredMixin, DeleteView):
     model = Creator
     success_url = reverse_lazy('applicationMarvel:creator_list')
 
@@ -82,9 +103,9 @@ class ComicDetail(DetailView, ConnegResponseMixin):
 #end of ComicDetailview
 
 
-class ComicCreate(CreateView):
+class ComicCreate(LoginRequiredMixin, CreateView):
     model = Comic
-    template_name = 'applicationMarvel/formularis/form.html'
+    template_name = 'applicationMarvel/formularis/form_comics_create.html'
     form_class = ComicForm
 
     def form_valid(self, form):
@@ -92,7 +113,7 @@ class ComicCreate(CreateView):
         return super(ComicCreate, self).form_valid(form)
 
 
-class ComicDelete(DeleteView):
+class ComicDelete(CheckIsOwnerMixin, LoginRequiredMixin, DeleteView):
     model = Comic
     success_url = reverse_lazy('applicationMarvel:comic_list')
 
@@ -115,7 +136,7 @@ class StoryDetail(DetailView, ConnegResponseMixin):
 #end of StoryDetail view
 
 
-class StoryCreate(CreateView):
+class StoryCreate(LoginRequiredMixin, CreateView):
     model = Story
     template_name = 'applicationMarvel/formularis/form.html'
     form_class = StoryForm
@@ -125,7 +146,7 @@ class StoryCreate(CreateView):
         return super(StoryCreate, self).form_valid(form)
 
 
-class StoryDelete(DeleteView):
+class StoryDelete(CheckIsOwnerMixin, LoginRequiredMixin, DeleteView):
     model = Story
     success_url = reverse_lazy('applicationMarvel:stories_list')
 
@@ -148,7 +169,7 @@ class EventDetail(DetailView, ConnegResponseMixin):
 #end of EventDetail view
 
 
-class EventCreate(CreateView):
+class EventCreate(LoginRequiredMixin, CreateView):
     model = Event
     template_name = 'applicationMarvel/formularis/form_events_create.html'
     form_class = EventForm
@@ -158,7 +179,7 @@ class EventCreate(CreateView):
         return super(EventCreate, self).form_valid(form)
 
 
-class EventDelete(DeleteView):
+class EventDelete(CheckIsOwnerMixin, LoginRequiredMixin, DeleteView):
     model = Event
     success_url = reverse_lazy('applicationMarvel:events_list')
 
@@ -181,7 +202,7 @@ class CharacterDetail(DetailView, ConnegResponseMixin):
 #end of CharacterDetail view
 
 
-class CharacterCreate(CreateView):
+class CharacterCreate(LoginRequiredMixin, CreateView):
     model = Character
     template_name = 'applicationMarvel/formularis/form.html'
     form_class = CharacterForm
@@ -191,7 +212,7 @@ class CharacterCreate(CreateView):
         return super(CharacterCreate, self).form_valid(form)
 
 
-class CharacterDelete(DeleteView):
+class CharacterDelete(CheckIsOwnerMixin, LoginRequiredMixin, DeleteView):
     model = Character
     success_url = reverse_lazy('applicationMarvel:characters_list')
 # Create your views here.
