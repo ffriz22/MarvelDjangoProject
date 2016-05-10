@@ -57,7 +57,7 @@ urlpatterns = patterns('',
                        url(r'^comic/(?P<pk>\d+)/edit/$',
                            LoguinRequiredCheckIsOwnerUpdateView.as_view(
                                model=Comic,
-                               template_name='applicationMarvel/formularis/form.html',
+                               template_name='applicationMarvel/formularis/form_comics_create.html',
                                form_class=ComicForm),
                            name='comic_edit'),
 

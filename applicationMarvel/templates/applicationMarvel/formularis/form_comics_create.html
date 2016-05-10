@@ -1,25 +1,27 @@
 {% extends "applicationMarvel/base.html" %}
 {% block content %}
-     <script>
+    <script>
       $(function() {
         $("#id_title").autocomplete({
           source: function(request, response) {
             $.ajax({
               url: "http://importmarvel.com/api/comics",
-              dataType: "jsonp",
+              dataType: "json",
               data: {
                     title: request.term,
-                    apikey: "24b0e32a3da40ba84c92423b8429c8a6a94bf7dd"
+                    apikey: "ca67da161cde0a90b313c90c32d6cd68",
+                    hash: "f9a822dd4ef44f790fcc4ad6b416f317",
+                    ts: "1"
                 },
               success: function(data) {
-                response($.map(data, function(item) {
+                response($.map(data.data.results, function(item) {
                   return {
-                    label: item
+                    label: item.title
                   }
                 }));
               }
             });
-          }
+          },
         });
       });
     </script>
