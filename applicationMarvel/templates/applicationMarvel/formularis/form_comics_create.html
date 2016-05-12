@@ -5,7 +5,7 @@
         $("#id_title").autocomplete({
           source: function(request, response) {
             $.ajax({
-              url: "http://importmarvel.com/api/comics",
+              url: "http://gateway.marvel.com/v1/public/comics",
               dataType: "json",
               data: {
                     title: request.term,
