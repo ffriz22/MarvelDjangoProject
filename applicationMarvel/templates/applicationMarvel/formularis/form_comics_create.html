@@ -1,5 +1,6 @@
 {% extends "applicationMarvel/base.html" %}
 {% block content %}
+
     <script>
       $(function() {
         $("#id_title").autocomplete({
@@ -8,7 +9,8 @@
               url: "http://gateway.marvel.com/v1/public/comics",
               dataType: "json",
               data: {
-                    title: request.term,
+                    titleStartsWith: request.term,
+                    limit: 10,
                     apikey: "ca67da161cde0a90b313c90c32d6cd68",
                     hash: "f9a822dd4ef44f790fcc4ad6b416f317",
                     ts: "1"
@@ -21,7 +23,7 @@
                 }));
               }
             });
-          },
+          }
         });
       });
     </script>
@@ -32,4 +34,5 @@
         </table>
         <input type="submit" value="Submit"/>
     </form>
+
 {% endblock %}
