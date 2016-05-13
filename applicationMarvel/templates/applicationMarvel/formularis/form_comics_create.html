@@ -22,19 +22,20 @@
                       description: item.description,
                       isbn: item.isbn,
                       pageCount: item.pageCount,
-                      price: parseFloat(item.prices.price),
+                      price: item.prices[0].price,
                   }
                 }));
               }
             });
           },
-            minLength: 2,
+            minLength: 1,
                 select: function( event, ui ) {
                     if (ui.item) {
                         $("#id_description").val(ui.item.description);
                         $("#id_isbn").val(ui.item.isbn);
                         $("#id_pageCount").val(ui.item.pageCount);
                         $("#id_price").val(ui.item.price);
+                        $("#id_thumbnail").val(ui.item.thumbnail);
                     }
                 }
         });
