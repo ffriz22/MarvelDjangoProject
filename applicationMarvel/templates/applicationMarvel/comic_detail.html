@@ -10,8 +10,10 @@
     </h1>
     <h2>Details:</h2>
     <p>
-        <b>Description:</b> {{ comic.description }}<br/>
+        <b>Description:</b> {{ comic.description }}<br/><br/>
         <b>ISBN:</b> {{ comic.isbn }}<br/>
+        <b>Pages:</b> {{ comic.pageCount }}<br/>
+        <b>Price:</b> {{ comic.price }}€<br/>
         <b>Creator:</b> <a href="{% url 'applicationMarvel:creator_detail' comic.creator.id %}">{{ comic.creator }}</a> <br/>
         <b>Story:</b> <a href="{% url 'applicationMarvel:story_detail' comic.stories.id  %}">{{ comic.stories }}</a>
     </p>

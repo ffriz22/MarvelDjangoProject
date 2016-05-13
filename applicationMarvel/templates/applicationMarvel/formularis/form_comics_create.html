@@ -18,12 +18,25 @@
               success: function(data) {
                 response($.map(data.data.results, function(item) {
                   return {
-                    label: item.title
+                      label: item.title,
+                      description: item.description,
+                      isbn: item.isbn,
+                      pageCount: item.pageCount,
+                      price: parseFloat(item.prices.price),
                   }
                 }));
               }
             });
-          }
+          },
+            minLength: 2,
+                select: function( event, ui ) {
+                    if (ui.item) {
+                        $("#id_description").val(ui.item.description);
+                        $("#id_isbn").val(ui.item.isbn);
+                        $("#id_pageCount").val(ui.item.pageCount);
+                        $("#id_price").val(ui.item.price);
+                    }
+                }
         });
       });
     </script>

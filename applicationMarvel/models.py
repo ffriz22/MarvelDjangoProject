@@ -43,7 +43,7 @@ class Story(models.Model):
 
 class Comic(models.Model):
     title = models.TextField(max_length=100) #The canonical title of the comic.,
-    description = models.TextField(max_length=100, null=True, blank=True) #The preferred description of the comic.,
+    description = models.TextField(max_length=1000, null=True, blank=True) #The preferred description of the comic.,
     modified = models.DateField(default=date.today()) #The date the resource was most recently modified.,
     isbn = models.TextField(max_length=100) #The ISBN for the comic (generally only populated for collection formats).,,
     pageCount = models.IntegerField() #The number of story pages in the comic.,
