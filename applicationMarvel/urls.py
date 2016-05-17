@@ -7,7 +7,10 @@ from forms import CreatorForm, CharacterForm, ComicForm, EventForm, StoryForm
 from models import Creator, Character, Comic, Event, Story
 from views import CreatorDetail, CreatorList, ComicDetail, ComicList, StoryDetail, StoryList, EventDetail, EventList, \
     CharacterDetail, CharacterList, CharacterCreate, ComicCreate, CreatorCreate, EventCreate, StoryCreate, \
-    CreatorDelete, ComicDelete, CharacterDelete, StoryDelete, EventDelete
+    CreatorDelete, ComicDelete, CharacterDelete, StoryDelete, EventDelete, APICreatorDetail, APICreatorList, \
+    APIStoryDetail, APIStoryList, APIComicDetail, APIComicList, APICharacterDetail, APICharacterList, \
+    APIEventDetail, APIEventList,
+
 
 urlpatterns = patterns('',
                        # Home page
@@ -156,3 +159,18 @@ urlpatterns = patterns('',
                            name='character_create'),
                        )
 
+# API urls
+
+urlpatterns += patterns('',
+                        url(r'^api/$', 'api_root'),
+                        url(r'^api/creators/$', APICreatorList.as_view(), name='creator_list'),
+                        url(r'^api/creator/(?P<pk>\d+)/$', APICreatorDetail.as_view(), name='creator_detail'),
+                        url(r'^api/stories/$', APIStoryList.as_view(), name='stories_list'),
+                        url(r'^api/story/(?P<pk>\d+)/$', APIStoryDetail.as_view(), name='story_detail'),
+                        url(r'^api/comics/$', APIComicList.as_view(), name='comics_list'),
+                        url(r'^api/comic/(?P<pk>\d+)/$', APIComicDetail.as_view(), name='comic_detail'),
+                        url(r'^api/characters/$', APICharacterList.as_view(), name='characters_list'),
+                        url(r'^api/character/(?P<pk>\d+)/$', APICharacterDetail.as_view(), name='character_detail'),
+                        url(r'^api/events/$', APIEventList.as_view(), name='events_list'),
+                        url(r'^api/event/(?P<pk>\d+)/$', APIEventDetail.as_view(), name='event_detail'),
+                        )

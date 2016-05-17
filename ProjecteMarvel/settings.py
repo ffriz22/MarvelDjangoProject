@@ -52,6 +52,7 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'rest_framework',
 ]
 
 ROOT_URLCONF = 'ProjecteMarvel.urls'
@@ -126,3 +127,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
 STATIC_URL = '/static/'
+
+REST_FRAMEWORK = {
+ 'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAuthenticatedOrReadOnly',),
+ 'PAGINATE_BY': 10,
+ 'DEFAULT_RENDERER_CLASSES': (
+ 'rest_framework.renderers.BrowsableAPIRenderer',
+ 'rest_framework.renderers.JSONRenderer',
+ 'rest_framework.renderers.XMLRenderer',
+ )
+}
