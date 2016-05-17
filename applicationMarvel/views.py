@@ -11,6 +11,9 @@ from rest_framework.exceptions import PermissionDenied
 from models import Creator, Comic, Story, Event, Character
 from forms import CreatorForm, CharacterForm, ComicForm, EventForm, StoryForm
 
+from rest_framework import generics, permissions
+from serializers import CreatorSerializer, StorySerializer, ComicSerializer, CharacterSerializer, EventSerializer
+
 
 class LoginRequiredMixin(object):
     @method_decorator (login_required())
@@ -216,3 +219,75 @@ class CharacterDelete(CheckIsOwnerMixin, LoginRequiredMixin, DeleteView):
     model = Character
     success_url = reverse_lazy('applicationMarvel:characters_list')
 # Create your views here.
+
+### RESTful API views ###
+
+class IsOwnerOrReadOnly(permissions.BasePermission):
+
+    def has_object_permission(self, request, view, obj):
+        # Read permissions are allowed to any request,
+        # so we'll always allow GET, HEAD or OPTIONS requests.
+        if request.method in permissions.SAFE_METHODS:
+            return True
+        # Instance must have an attribute named `owner`.
+        return obj.user == request.user
+
+class APICreatorList(generics.ListCreateAPIView):
+    permission_classes = (IsOwnerOrReadOnly,)
+    model = Creator
+    queryset = Creator.objects.all()
+    serializer_class = CreatorSerializer
+
+class APICreatorDetail(generics.RetrieveUpdateDestroyAPIView):
+    permission_classes = (IsOwnerOrReadOnly,)
+    model = Creator
+    queryset = Creator.objects.all()
+    serializer_class = CreatorSerializer
+
+class APIComicList(generics.ListCreateAPIView):
+    permission_classes = (IsOwnerOrReadOnly,)
+    model = Comic
+    queryset = Comic.objects.all()
+    serializer_class = ComicSerializer
+
+class APIComicDetail(generics.RetrieveUpdateDestroyAPIView):
+    permission_classes = (IsOwnerOrReadOnly,)
+    model = Comic
+    queryset = Comic.objects.all()
+    serializer_class = ComicSerializer
+
+class APIStoryList(generics.ListCreateAPIView):
+    permission_classes = (IsOwnerOrReadOnly,)
+    model = Story
+    queryset = Story.objects.all()
+    serializer_class = StorySerializer
+
+class APIStoryDetail(generics.RetrieveUpdateDestroyAPIView):
+    permission_classes = (IsOwnerOrReadOnly,)
+    model = Story
+    queryset = Story.objects.all()
+    serializer_class = StorySerializer
+
+class APICharacterList(generics.ListCreateAPIView):
+    permission_classes = (IsOwnerOrReadOnly,)
+    model = Character
+    queryset = Character.objects.all()
+    serializer_class = CharacterSerializer
+
+class APICharacterDetail(generics.RetrieveUpdateDestroyAPIView):
+    permission_classes = (IsOwnerOrReadOnly,)
+    model = Character
+    queryset = Character.objects.all()
+    serializer_class = CharacterSerializer
+
+class APIEventList(generics.ListCreateAPIView):
+    permission_classes = (IsOwnerOrReadOnly,)
+    model = Event
+    queryset = Event.objects.all()
+    serializer_class = EventSerializer
+
+class APIEventDetail(generics.RetrieveUpdateDestroyAPIView):
+    permission_classes = (IsOwnerOrReadOnly,)
+    model = Event
+    queryset = Event.objects.all()
+    serializer_class = EventSerializer
