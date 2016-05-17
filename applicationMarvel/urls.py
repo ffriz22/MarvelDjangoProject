@@ -9,7 +9,7 @@ from views import CreatorDetail, CreatorList, ComicDetail, ComicList, StoryDetai
     CharacterDetail, CharacterList, CharacterCreate, ComicCreate, CreatorCreate, EventCreate, StoryCreate, \
     CreatorDelete, ComicDelete, CharacterDelete, StoryDelete, EventDelete, APICreatorDetail, APICreatorList, \
     APIStoryDetail, APIStoryList, APIComicDetail, APIComicList, APICharacterDetail, APICharacterList, \
-    APIEventDetail, APIEventList,
+    APIEventDetail, APIEventList
 
 
 urlpatterns = patterns('',
@@ -162,7 +162,7 @@ urlpatterns = patterns('',
 # API urls
 
 urlpatterns += patterns('',
-                        url(r'^api/$', 'api_root'),
+
                         url(r'^api/creators/$', APICreatorList.as_view(), name='creator_list'),
                         url(r'^api/creator/(?P<pk>\d+)/$', APICreatorDetail.as_view(), name='creator_detail'),
                         url(r'^api/stories/$', APIStoryList.as_view(), name='stories_list'),

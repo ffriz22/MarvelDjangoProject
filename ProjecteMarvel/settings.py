@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'applicationMarvel'
+    'applicationMarvel',
+    'rest_framework',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -52,7 +53,6 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'rest_framework',
 ]
 
 ROOT_URLCONF = 'ProjecteMarvel.urls'
@@ -134,6 +134,6 @@ REST_FRAMEWORK = {
  'DEFAULT_RENDERER_CLASSES': (
  'rest_framework.renderers.BrowsableAPIRenderer',
  'rest_framework.renderers.JSONRenderer',
- 'rest_framework.renderers.XMLRenderer',
+ 'rest_framework_xml.renderers.XMLRenderer',
  )
 }
