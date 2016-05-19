@@ -8,6 +8,7 @@ from models import Creator, Comic, Story, Event, Character
 from forms import CreatorForm, CharacterForm, ComicForm, EventForm, StoryForm
 
 from rest_framework import generics, permissions
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from serializers import CreatorSerializer, StorySerializer, ComicSerializer, CharacterSerializer, EventSerializer
 
 
@@ -212,7 +213,7 @@ class IsOwnerOrReadOnly(permissions.BasePermission):
         return obj.user == request.user
 
 class APICreatorList(generics.ListCreateAPIView):
-    permission_classes = (IsOwnerOrReadOnly,)
+    permission_classes = (IsAuthenticatedOrReadOnly,)
     model = Creator
     queryset = Creator.objects.all()
     serializer_class = CreatorSerializer
@@ -224,7 +225,7 @@ class APICreatorDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = CreatorSerializer
 
 class APIComicList(generics.ListCreateAPIView):
-    permission_classes = (IsOwnerOrReadOnly,)
+    permission_classes = (IsAuthenticatedOrReadOnly,)
     model = Comic
     queryset = Comic.objects.all()
     serializer_class = ComicSerializer
@@ -236,7 +237,7 @@ class APIComicDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = ComicSerializer
 
 class APIStoryList(generics.ListCreateAPIView):
-    permission_classes = (IsOwnerOrReadOnly,)
+    permission_classes = (IsAuthenticatedOrReadOnly,)
     model = Story
     queryset = Story.objects.all()
     serializer_class = StorySerializer
@@ -248,7 +249,7 @@ class APIStoryDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = StorySerializer
 
 class APICharacterList(generics.ListCreateAPIView):
-    permission_classes = (IsOwnerOrReadOnly,)
+    permission_classes = (IsAuthenticatedOrReadOnly,)
     model = Character
     queryset = Character.objects.all()
     serializer_class = CharacterSerializer
@@ -260,7 +261,7 @@ class APICharacterDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = CharacterSerializer
 
 class APIEventList(generics.ListCreateAPIView):
-    permission_classes = (IsOwnerOrReadOnly,)
+    permission_classes = (IsAuthenticatedOrReadOnly,)
     model = Event
     queryset = Event.objects.all()
     serializer_class = EventSerializer
