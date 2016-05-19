@@ -9,8 +9,7 @@ from views import CreatorDetail, CreatorList, ComicDetail, ComicList, StoryDetai
     CharacterDetail, CharacterList, CharacterCreate, ComicCreate, CreatorCreate, EventCreate, StoryCreate, \
     CreatorDelete, ComicDelete, CharacterDelete, StoryDelete, EventDelete, APICreatorDetail, APICreatorList, \
     APIStoryDetail, APIStoryList, APIComicDetail, APIComicList, APICharacterDetail, APICharacterList, \
-    APIEventDetail, APIEventList
-
+    APIEventDetail, APIEventList, LoguinRequiredCheckIsOwnerUpdateView
 
 urlpatterns = patterns('',
                        # Home page
@@ -30,7 +29,7 @@ urlpatterns = patterns('',
 
                        # Edit creator details, ex.: applicationMarvel/creator/1/edit/
                        url(r'^creator/(?P<pk>\d+)/edit/$',
-                           UpdateView.as_view(
+                           LoguinRequiredCheckIsOwnerUpdateView.as_view(
                                model=Creator,
                                template_name='applicationMarvel/formularis/form.html',
                                form_class=CreatorForm),
@@ -58,9 +57,9 @@ urlpatterns = patterns('',
 
                        # Edit comic details, ex.: applicationMarvel/comic/1/edit/
                        url(r'^comic/(?P<pk>\d+)/edit/$',
-                           UpdateView.as_view(
+                           LoguinRequiredCheckIsOwnerUpdateView.as_view(
                                model=Comic,
-                               template_name='applicationMarvel/formularis/form.html',
+                               template_name='applicationMarvel/formularis/form_comics_create.html',
                                form_class=ComicForm),
                            name='comic_edit'),
 
@@ -86,7 +85,7 @@ urlpatterns = patterns('',
 
                        # Edit story details, ex.: applicationMarvel/story/1/edit/
                        url(r'^story/(?P<pk>\d+)/edit/$',
-                           UpdateView.as_view(
+                           LoguinRequiredCheckIsOwnerUpdateView.as_view(
                                model=Story,
                                template_name='applicationMarvel/formularis/form.html',
                                form_class=StoryForm),
@@ -114,7 +113,7 @@ urlpatterns = patterns('',
 
                        # Edit event details, ex.: applicationMarvel/event/1/edit/
                        url(r'^event/(?P<pk>\d+)/edit/$',
-                           UpdateView.as_view(
+                           LoguinRequiredCheckIsOwnerUpdateView.as_view(
                                model=Event,
                                template_name='applicationMarvel/formularis/form.html',
                                form_class=EventForm),
@@ -142,7 +141,7 @@ urlpatterns = patterns('',
 
                        # Edit character details, ex.: applicationMarvel/character/1/edit/
                        url(r'^character/(?P<pk>\d+)/edit/$',
-                           UpdateView.as_view(
+                           LoguinRequiredCheckIsOwnerUpdateView.as_view(
                                model=Character,
                                template_name='applicationMarvel/formularis/form.html',
                                form_class=CharacterForm),
