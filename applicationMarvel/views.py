@@ -6,7 +6,6 @@ from django.utils.decorators import method_decorator
 from django.views.generic import DetailView, ListView, DeleteView
 from django.views.generic.base import TemplateResponseMixin
 from django.views.generic.edit import CreateView, UpdateView
-from rest_framework.exceptions import PermissionDenied
 
 from models import Creator, Comic, Story, Event, Character
 from forms import CreatorForm, CharacterForm, ComicForm, EventForm, StoryForm

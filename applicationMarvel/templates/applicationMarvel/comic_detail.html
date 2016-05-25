@@ -1,4 +1,7 @@
 {% extends "applicationMarvel/base.html" %}
+    <style>
+    content{width:600px}
+   </style>
 {% block content %}
     <h1>
         Comic: {{ comic.title }}
@@ -10,16 +13,27 @@
     </h1>
     <h2>Details:</h2>
     <p>
-        <b>Description:</b> {{ comic.description }}<br/><br/>
-        <b>ISBN:</b> {{ comic.isbn }}<br/>
-        <b>Pages:</b> {{ comic.pageCount }}<br/>
-        <b>Price:</b> {{ comic.price }}€<br/>
+        <b>Description:</b>
+                <span vocab="http://schema.org/" typeof="book"> <span property ="about"> {{ comic.description }}<br/><br/>
+                </span>
+        <b>ISBN:</b>
+                <span property ="isbn">{{ comic.isbn }}<br/> </span>
+        <b>Pages:</b>
+                <span property ="numberOfPages">{{ comic.pageCount }}<br/> </span>
+                <span vocab="http://schema.org/" typeof="offer">
+        <b>Price:</b>
+                    <span property ="price">{{ comic.price }}€<br/> </span>
+                    </span>
         <b>Creator:</b> <a href="{% url 'applicationMarvel:creator_detail' comic.creator.id %}">{{ comic.creator }}</a> <br/>
+                    <span property ="creator">{{ comic.creator }} </span>
+                    </span>
         <b>Story:</b> <a href="{% url 'applicationMarvel:story_detail' comic.stories.id  %}">{{ comic.stories }}</a>
     </p>
 
     {% if comic.thumbnail %}
-        <p><img src="{{ comic.thumbnail.url }}" width="200" /></p>
+        <span rel="image">
+        <span vocab="http://schema.org/" typeof ="ImageObject"> <span property ="thumbnail">{{comic.thumbnail.url}}
+        <p><img src="{{ comic.thumbnail.url }}" width="200" /></p> </span></span></span>
     {% endif %}
 
     <h2>
@@ -43,6 +57,7 @@
         {% empty %}<li>Sorry, no events for this comic yet.</li>
         {% endfor %}
     </ul>
+
 {% endblock %}
 {% block footer %}
     Created by {{ comic.user }}

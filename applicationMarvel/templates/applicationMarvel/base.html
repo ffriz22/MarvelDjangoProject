@@ -9,7 +9,7 @@
     <title>{% block title %}Marvel DB{% endblock %}</title>
 </head>
 <body style="background: url('/media/applicationMarvel/MarvelBackgroud.jpg') no-repeat fixed right;">
-<div id="sidebar">
+<div id="sidebar" style="align: left">
     {% block header %}
         {% if user.username %}<p>User {{ user.username }} <a href="/accounts/logout/">Sign out</a></p>
         {% else %}<p><a href="/accounts/login/">Sign in</a></p>{% endif %}
