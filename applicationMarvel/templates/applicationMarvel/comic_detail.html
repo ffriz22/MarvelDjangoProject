@@ -29,7 +29,6 @@
                     </span>
         <b>Story:</b> <a href="{% url 'applicationMarvel:story_detail' comic.stories.id  %}">{{ comic.stories }}</a>
     </p>
-
     {% if comic.thumbnail %}
         <span rel="image">
         <span vocab="http://schema.org/" typeof ="ImageObject"> <span property ="thumbnail">{{comic.thumbnail.url}}
