@@ -1,25 +1,58 @@
 {% extends "applicationMarvel/base.html" %}
+<style xmlns="http://www.w3.org/1999/html">
+        content{width:600px}
+    </style>
 {% block content %}
-    <h1>
-        Event: {{ event.title }}
-        {% if user == event.user %}
-            (<a href="{% url 'applicationMarvel:event_edit' event.id %}">editar</a>)
-            <form method="POST" action="{% url "applicationMarvel:event_delete" event.id %}">
-   {% csrf_token %}<input type="submit" value="Borrar">
-        {% endif %}
-    </h1>
-    <h2>Details:</h2>
-    <p>
-        <b>Description:</b> {{ event.description }}<br/>
-        <b>Creator:</b> <a href="{% url 'applicationMarvel:creator_detail' event.creator.id %}">{{ event.creator }}</a> <br/>
-        <b>Story:</b> <a href="{% url 'applicationMarvel:story_detail' event.stories.id %}">{{ event.stories }}</a> <br/>
-        <b>Comic:</b> <a href="{% url 'applicationMarvel:comic_detail' event.comics.id %}">{{ event.comics }}</a> <br/>
-        <b>Character:</b> <a href="{% url 'applicationMarvel:character_detail' event.character.id %}">{{ event.character }}</a>
-    </p>
+    <span vocab="http://schema.org/" typeof="Event">
+        <h1>
+            Event: <span property ="name">{{ event.title }}</span>
+            {% if user == event.user %}
+                (<a href="{% url 'applicationMarvel:event_edit' event.id %}">editar</a>)
+                <form method="POST" action="{% url "applicationMarvel:event_delete" event.id %}"/>
+                {% csrf_token %}<input type="submit" value="Borrar">
+            {% endif %}
+        </h1>
+        <h2>Details:</h2>
+        <p>
+            <b>Location:</b>
+            <span property="location" typeof="Place">
+                <span property="Name">Philadelphia, PA</span>
+                <span property="address">Fake Street 123</span>
+            </span>
+            </br>
+            <b>Description:</b>
+                <span property ="description"> {{ event.description }}<br/><br/></span>
+            <b>Story:</b>
+                <span property ="workPerformed"><a href="{% url 'applicationMarvel:story_detail' event.stories.id %}">
+                    {{ event.stories }}</a> <br/></span>
+            <span property="performer" typeof="Person">
+                <b>Creator:</b>
+                    <span property ="name"><a href="{% url 'applicationMarvel:creator_detail' event.creator.id %}">
+                        {{ event.creator }}</a> <br/></span>
+            </span>
+            <span property="recordedIn" typeof="Book">
+                <b>Comic:</b>
+                    <span property ="name"><a href="{% url 'applicationMarvel:comic_detail' event.comics.id %}">
+                        {{ event.comics }}</a> <br/></span>
+                <b>Character:</b>
+                    <span property ="character"><a href="{% url 'applicationMarvel:character_detail' event.character.id %}">
+                        {{ event.character }}</a><br/></span>
+            </span>
+            <b>Start:</b>
+                <span property ="startDate">{{ event.start }}<br/></span>
+            <b>End:</b>
+                <span property ="endDate">{{ event.end }}<br/></span>
+        </p>
 
-    {% if event.thumbnail %}
-        <p><img src="{{ event.thumbnail.url }}" width="200" /></p>
-    {% endif %}
+        {% if event.thumbnail %}
+            <span property="image" hidden="true">{{ event.thumbnail.url }}</span>
+                <p>
+                    <a href="{{ event.thumbnail.url }}" target="_blank">
+                    <img src="{{ event.thumbnail.url }}" width="200" />
+                    </a>
+                </p>
+        {% endif %}
+    </span>
 {% endblock %}
 {% block footer %}
     Created by {{ event.user }}
