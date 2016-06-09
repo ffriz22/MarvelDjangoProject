@@ -3,15 +3,15 @@
     content{width:600px}
    </style>
 {% block content %}
-    <h1>
-        Comic: {{ comic.title }}
-        {% if user == comic.user %}
-            (<a href="{% url 'applicationMarvel:comic_edit' comic.id %}">editar</a>)
-            <form method="POST" action="{% url "applicationMarvel:comic_delete" comic.id %}">
-            {% csrf_token %}<input type="submit" value="Borrar">
-        {% endif %}
-    </h1>
     <span vocab="http://schema.org/" typeof="book">
+        <h1>
+            Comic: <span property ="name">{{ comic.title }}</span>
+            {% if user == comic.user %}
+                (<a href="{% url 'applicationMarvel:comic_edit' comic.id %}">editar</a>)
+                <form method="POST" action="{% url "applicationMarvel:comic_delete" comic.id %}"/>
+                {% csrf_token %}<input type="submit" value="Borrar">
+            {% endif %}
+        </h1>
         <h2>Details:</h2>
         <p>
             <b>Description:</b>
@@ -21,12 +21,15 @@
             <b>Pages:</b>
                     <span property ="numberOfPages">{{ comic.pageCount }}<br/> </span>
             <b>Price:</b>
-                <span vocab="http://schema.org/" typeof="offer">
+                    <span property="offers" typeof="Offer">
                         <span property ="price">{{ comic.price }}€<br/> </span>
                 </span>
             <b>Creator:</b>
-                    <span property ="creator"><a href="{% url 'applicationMarvel:creator_detail' comic.creator.id %}">{{ comic.creator }}</a> <br/>
-                        </span>
+                    <span property ="creator" typeof="Person">
+                        <span property="name">{{ comic.creator }}</span>
+                    </span>
+                        <a href="{% url 'applicationMarvel:creator_detail' comic.creator.id %}">{{ comic.creator }}</a> <br/>
+
             <b>Story:</b> <a href="{% url 'applicationMarvel:story_detail' comic.stories.id  %}">{{ comic.stories }}</a>
         </p>
         {% if comic.thumbnail %}
@@ -43,24 +46,34 @@
         <ul>
             {% for character in comic.character_set.all %}
                 <li>
+                <span property="character" typeof="Person">
+                    <span property="name" hidden="true">{{ character.name }}</span>
+                </span>
                     <a href="{% url 'applicationMarvel:character_detail' character.id %}">
-                        <span property="character">{{ character.name }}</span>
+                        {{ character.name }}
                     </a>
                 </li>
             {% empty %}<li>Sorry, no characters for this character yet.</li>
             {% endfor %}
         </ul>
-    </span>
+
     <h2>
         Events
     </h2>
     <ul>
         {% for event in comic.event_set.all %}
-            <li><a href="{% url 'applicationMarvel:event_detail' event.id %}">
-                {{ event.title }}</a></li>
+            <li>
+                <span property="releasedEvent" typeof="PublicationEvent ">
+                    <span property="name" hidden="true">{{ event.title }}</span>
+                </span>
+                <a href="{% url 'applicationMarvel:event_detail' event.id %}">
+                    {{ event.title }}
+                </a>
+            </li>
         {% empty %}<li>Sorry, no events for this comic yet.</li>
         {% endfor %}
     </ul>
+    </span>
 
 {% endblock %}
 {% block footer %}
