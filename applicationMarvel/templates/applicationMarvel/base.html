@@ -14,7 +14,16 @@
         {% if user.username %}<p>User {{ user.username }} <a href="/accounts/logout/">Sign out</a></p>
         {% else %}<p><a href="/accounts/login/">Sign in</a></p>{% endif %}
     {% endblock %}
-    {% block sidebar %}<ul><li><a href="/applicationMarvel">Home</a></li></ul>{% endblock %}
+    {% block sidebar %}
+        <ul>
+            <b>Elements</b>
+            <li><a href="{% url 'applicationMarvel:creator_list' %}">Creators</a></li>
+            <li><a href="{% url 'applicationMarvel:comic_list' %}">Comics</a></li>
+            <li><a href="{% url 'applicationMarvel:stories_list' %}">Stories</a></li>
+            <li><a href="{% url 'applicationMarvel:characters_list' %}">Characters</a></li>
+            <li><a href="{% url 'applicationMarvel:events_list' %}">Events</a></li>
+        </ul>
+    {% endblock %}
 </div>
 <div id="content">
     {% block content %}
